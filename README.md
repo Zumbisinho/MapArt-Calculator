@@ -12,6 +12,10 @@ Se não for achado o Tkinter, Execute em um CMD:
 
 **pip install tkinter**
 
+# Como Utilizar a Ferramenta?
+Para executar a Calculadora, Apenas clique no arquivo
+**Main.py** e importe a lista conforme as regras a seguir!
+
 # Como importar uma Lista?
 Para importar uma lista corretamente, é nescessário ir para o site: https://rebane2001.com/mapartcraft/
 Após fazer a lista de blocos utilizados, copie todos os blocos incluindo o "Block Ammount" *(Sem esse passo o código quebra)*
