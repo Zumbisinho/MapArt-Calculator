@@ -1,6 +1,4 @@
 import tkinter
-
-
 primero_count = 0
 primero_nome = 0
 resultado = 0
@@ -12,8 +10,8 @@ lista_final.clear()
 NAcount = 0
 index = 0
 resultado_desconto = 0
-
 lines = []
+# Troque os valores de acordo com o servidor! (Armamc.com Values)
 valores_dos_blocos = {
     'Grass Block' : 6.25  ,
     'Slime Block' :  23.44,
@@ -344,8 +342,6 @@ janela = tkinter.Tk()
 janela.geometry('1000x800')
 janela.title('Calculador de Maparts!')
 
-
-
 rotulo = tkinter.Label(janela,text=('Digite sua lista aqui!'),font=('Arial',20))
 rotulo.grid(row=1,column=1)
 
@@ -369,7 +365,6 @@ entrada.grid(row=2,column=1,padx=15)
 
 desconto_label = tkinter.Label(janela,text=('Digite o desconto:'),font=('Arial',10))
 desconto_label.grid(row=3,column=1)
-
 
 valor_padrao = tkinter.StringVar()
 valor_padrao.set(0)
@@ -405,16 +400,16 @@ def getlines():
         if index == 1 or index == 2:
             print('ignorando')
         else:
-            if not index % 2 == 0: ## se for par
+            if not index % 2 == 0:
                 nome = line
             else:
                     count = str(line).split(' ')
                     calc = calcularvalor(count,nome)
                     nacalc = calc[1]
                     result = calc[0]
-                    if nome in lista_final: # Poe tudo em uma lista
+                    if nome in lista_final:
                         if result != 'N/A':
-                            lista_final[nome] = int(lista_final.get(nome)) + int(result*int(desconto)/100) ## Nome existem em Lista: Adiciona
+                            lista_final[nome] = int(lista_final.get(nome)) + int(result*int(desconto)/100)
                         else:
                             lista_final[nome] = result
                     else:
@@ -447,7 +442,6 @@ def getlines():
                 lista_output[n] = v
         else:
             lista_output[n] = v
-            
 
     lista_string = '\n'.join(f'{k}: {v}'for k,v in lista_output.items())
     saida.config(text=lista_string)
@@ -468,24 +462,4 @@ def getlines():
 botao = tkinter.Button(janela,text='Calcular!',font=20,command=getlines)
 botao.grid(row=5,column=1)
 
-
 janela.mainloop()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Remover primeira linha
-# par = nome
-# impar = valor
