@@ -351,7 +351,7 @@ rotulo_result.grid(row=1,column=3,padx=133)
 saida = tkinter.Label(janela,text=(''),width=33,height=28,bd=3,relief='groove',justify='left',anchor='nw',font=('Arial',15))
 saida.grid(row=2,column=3)
 
-ajuda = tkinter.Label(janela,text='Leia o README.txt\nAntes de utilizar\n A ferramenta!\n🤠',font=('Arial',15))
+ajuda = tkinter.Label(janela,text='Leia o README.md\nAntes de utilizar\n A ferramenta!\n🤠',font=('Arial',15))
 ajuda.grid(row=2,column=2,padx=10)
 
 rotulo_total_result = tkinter.Label(janela,text='Resultado Total:',font=('Arial',10))
