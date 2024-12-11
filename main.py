@@ -1,4 +1,6 @@
 import tkinter
+
+
 primero_count = 0
 primero_nome = 0
 resultado = 0
@@ -10,8 +12,8 @@ lista_final.clear()
 NAcount = 0
 index = 0
 resultado_desconto = 0
+
 lines = []
-# Troque os valores de acordo com o servidor! (Armamc.com Values)
 valores_dos_blocos = {
     'Grass Block' : 6.25  ,
     'Slime Block' :  23.44,
@@ -342,17 +344,21 @@ janela = tkinter.Tk()
 janela.geometry('1000x800')
 janela.title('Calculador de Maparts!')
 
+
+
 rotulo = tkinter.Label(janela,text=('Digite sua lista aqui!'),font=('Arial',20))
 rotulo.grid(row=1,column=1)
 
 rotulo_result = tkinter.Label(janela,text=('Resultado:'),font=('Arial',20))
 rotulo_result.grid(row=1,column=3,padx=133)
 
-saida = tkinter.Label(janela,text=(''),width=33,height=28,bd=3,relief='groove',justify='left',anchor='nw',font=('Arial',15))
+saida = tkinter.Text(janela,width=33,height=28,bd=3,relief='groove',font=('Arial',15),wrap=tkinter.WORD,state=tkinter.DISABLED) ##Ta bugado
+
 saida.grid(row=2,column=3)
 
-ajuda = tkinter.Label(janela,text='Leia o README.md\nAntes de utilizar\n A ferramenta!\n🤠',font=('Arial',15))
+ajuda = tkinter.Label(janela,text='Leia o README.txt\nAntes de utilizar\n A ferramenta!\n🤠',font=('Arial',15))
 ajuda.grid(row=2,column=2,padx=10)
+
 
 rotulo_total_result = tkinter.Label(janela,text='Resultado Total:',font=('Arial',10))
 rotulo_total_result.grid(row=3,column=3)
@@ -365,6 +371,7 @@ entrada.grid(row=2,column=1,padx=15)
 
 desconto_label = tkinter.Label(janela,text=('Digite o desconto:'),font=('Arial',10))
 desconto_label.grid(row=3,column=1)
+
 
 valor_padrao = tkinter.StringVar()
 valor_padrao.set(0)
@@ -390,26 +397,33 @@ def calcularvalor(count, nome):
 
 def getlines():
     global resultado_total
-    linhas = (entrada.get("1.0",tkinter.END)).splitlines()
+    linhas_n = (entrada.get("1.0",tkinter.END)).splitlines()
     desconto = (desconto_text.get())
+    linhas = []
+    linhas
     global index
     nome = ''
     count = ''
-    for line in linhas:
-        index = index + 1
-        if index == 1 or index == 2:
-            print('ignorando')
+    for linha in linhas_n:
+        if linha == '' or linha == 'Block\tAmount':
+            pass
         else:
-            if not index % 2 == 0:
+            linhas.append(linha)
+            
+    print(linhas)
+    for line in linhas:
+        
+            index = index + 1
+            if not index % 2 == 0: ## se for par
                 nome = line
             else:
                     count = str(line).split(' ')
                     calc = calcularvalor(count,nome)
                     nacalc = calc[1]
                     result = calc[0]
-                    if nome in lista_final:
+                    if nome in lista_final: # Poe tudo em uma lista
                         if result != 'N/A':
-                            lista_final[nome] = int(lista_final.get(nome)) + int(result*int(desconto)/100)
+                            lista_final[nome] = int(lista_final.get(nome)) + int(result*int(desconto)/100) ## Nome existem em Lista: Adiciona
                         else:
                             lista_final[nome] = result
                     else:
@@ -442,9 +456,12 @@ def getlines():
                 lista_output[n] = v
         else:
             lista_output[n] = v
+            
 
     lista_string = '\n'.join(f'{k}: {v}'for k,v in lista_output.items())
-    saida.config(text=lista_string)
+    saida.config(state=tkinter.NORMAL)
+    saida.insert(tkinter.END,lista_string)
+    saida.config(state=tkinter.DISABLED)
     saida_total.config(text=f'{resultado_total} Coins e {nacalc} Sem Valor!')
     calcularvalor(1,'reset')
     calc = ''
@@ -462,4 +479,24 @@ def getlines():
 botao = tkinter.Button(janela,text='Calcular!',font=20,command=getlines)
 botao.grid(row=5,column=1)
 
+
 janela.mainloop()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Remover primeira linha
+# par = nome
+# impar = valor
